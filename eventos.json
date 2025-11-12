@@ -1,0 +1,9 @@
+{
+  "especiais": [
+    { "data": "2025-11-11", "tipo": "feriado", "nome": "Férias" },
+    { "data": "2025-12-20", "tipo": "teste", "nome": "teste 01" },
+    { "data": "2025-12-24", "tipo": "teste", "nome": "teste 02" },
+    { "data": "2025-12-25", "tipo": "teste", "nome": "teste 03" },
+    { "data": "2026-01-10", "tipo": "teste", "nome": "teste 04" }
+  ]
+}
