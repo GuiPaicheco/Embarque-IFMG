@@ -1,0 +1,55 @@
+{
+  "climas": [
+    { "icon": "☀️", "nome": "Ensolarado" },
+    { "icon": "🌤️", "nome": "Parcialmente Nublado" },
+    { "icon": "☁️", "nome": "Nublado" },
+    { "icon": "🌧️", "nome": "Chuva Leve" },
+    { "icon": "⛈️", "nome": "Tempestade" },
+    { "icon": "🌦️", "nome": "Sol entre Nuvens" }
+  ],
+
+  "linhas": [
+    {
+      "id": "1012",
+      "nome": "Linha 1012 - Morada da Serra / Terminal Ibirité",
+      "locais": ["Terminal Ibirité", "Centro", "Av. São Paulo", "Campus IFMG", "Morada da Serra", "Campus IFMG", "Terminal Ibirité"],
+      "horarios": {
+        "monday":    ["07:10", "08:00", "08:50", "09:40", "10:30", "11:20"],
+        "tuesday":   ["07:10", "08:00", "08:50", "09:40", "10:30", "11:20"],
+        "wednesday": ["07:10", "08:00", "08:50", "09:40", "10:30", "11:20"],
+        "thursday":  ["07:10", "08:00", "08:50", "09:40", "10:30", "11:20"],
+        "friday":    ["07:10", "08:00", "08:50", "09:40", "10:30", "11:20"],
+        "saturday":  ["07:20", "09:00", "10:40", "12:20"],
+        "sunday":    []
+      }
+    },
+    {
+      "id": "1750",
+      "nome": "Linha 1750 - Estação Barreiro / IFMG Ibirité",
+      "locais": ["Estação Barreiro", "Via Betim", "Av. Afonso Pena", "Campus IFMG"],
+      "horarios": {
+        "monday":    ["07:30", "08:10", "08:50", "09:30", "10:10", "10:50"],
+        "tuesday":   ["07:30", "08:10", "08:50", "09:30", "10:10", "10:50"],
+        "wednesday": ["07:30", "08:10", "08:50", "09:30", "10:10", "10:50"],
+        "thursday":  ["07:30", "08:10", "08:50", "09:30", "10:10", "10:50"],
+        "friday":    ["07:30", "08:10", "08:50", "09:30", "10:10", "10:50"],
+        "saturday":  ["07:45", "09:25", "11:05"],
+        "sunday":    []
+      }
+    },
+    {
+      "id": "1751",
+      "nome": "Linha 1751 - Terminal Betim / IFMG Ibirité",
+      "locais": ["Terminal Betim", "Rua São Mateus", "Rodovia 262", "Campus IFMG"],
+      "horarios": {
+        "monday":    ["07:15", "07:55", "08:35", "09:15", "09:55", "10:35"],
+        "tuesday":   ["07:15", "07:55", "08:35", "09:15", "09:55", "10:35"],
+        "wednesday": ["07:15", "07:55", "08:35", "09:15", "09:55", "10:35"],
+        "thursday":  ["07:15", "07:55", "08:35", "09:15", "09:55", "10:35"],
+        "friday":    ["07:15", "07:55", "08:35", "09:15", "09:55", "10:35"],
+        "saturday":  ["08:00", "09:40", "11:20"],
+        "sunday":    []
+      }
+    }
+  ]
+}

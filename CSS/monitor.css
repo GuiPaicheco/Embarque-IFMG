@@ -1,0 +1,275 @@
+/* ================================
+   ESTILO GERAL - EMBARCA IFMG
+   Painel Monitor (Tema Unificado)
+   ================================ */
+
+   * {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.5s ease;
+  }
+  
+  body {
+    margin: 0;
+    background: linear-gradient(160deg, #0b2038, #143f59);
+    background-size: 200% 200%;
+    animation: gradientShift 18s ease infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    color: #e0f7fa;
+  }
+  
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* ================================
+     CABEÇALHO
+     ================================ */
+  header {
+    text-align: center;
+    padding: 25px;
+    width: 100%;
+    backdrop-filter: blur(8px);
+    animation: fadeIn 1s ease forwards;
+    position: relative;
+    color: #e1f5fe;
+  }
+  
+  .top-bar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 1.9em;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    text-align: center;
+  }
+  
+  /* Logo do IFMG */
+  header::before {
+    content: "";
+    background: url("../ASSETS/logo-ifmg.png") no-repeat center/contain;
+    position: absolute;
+    top: 25px;
+    left: 40px;
+    width: 100px;
+    height: 100px;
+    opacity: 0.85;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.2));
+    animation: logoFloat 6s ease-in-out infinite;
+  }
+  
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  
+  /* STATUS */
+  #status-indicador {
+    position: absolute;
+    right: 25px;
+    top: 10px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.15);
+    font-size: 0.95em;
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  }
+  
+  #event-banner {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    padding: 8px 0;
+    font-weight: 500;
+    font-size: 1.05em;
+    letter-spacing: 0.3px;
+  }
+  
+  .hidden { display: none; }
+  
+  #clock {
+    margin-top: 8px;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #b3e5fc;
+  }
+  
+  #weather {
+    margin-top: 8px;
+    font-size: 1.05em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #b3e5fc;
+  }
+  
+  /* ================================
+     CONTEÚDO PRINCIPAL
+     ================================ */
+  main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .bus-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: stretch;
+    width: 90%;
+    max-width: 1200px;
+    padding-bottom: 30px;
+  }
+  
+  .bus-card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 18px;
+    padding: 20px;
+    width: 330px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideUp 1s ease forwards;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  
+  .bus-card:nth-child(2) { animation-delay: 0.2s; }
+  .bus-card:nth-child(3) { animation-delay: 0.4s; }
+  
+  .bus-title {
+    font-size: 1.7em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #e1f5fe;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  }
+  
+  .bus-info,
+  .bus-times p {
+    font-size: 1.05em;
+    margin: 6px 0;
+    color: #cfd8dc;
+  }
+  
+  .highlight {
+    font-weight: 600;
+    color: #e1f5fe;
+  }
+  
+  /* ================================
+     RODAPÉ
+     ================================ */
+  footer {
+    text-align: center;
+    width: 100%;
+    padding: 15px;
+    font-size: 0.9em;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    color: #b3e5fc;
+  }
+  
+  #eventos-mes {
+    margin-bottom: 10px;
+  }
+  
+  #eventos-mes h2 {
+    margin-bottom: 6px;
+    font-size: 1.1em;
+    color: #e1f5fe;
+  }
+  
+  #eventos-mes ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95em;
+  }
+  
+  #eventos-mes li {
+    margin: 3px 0;
+    color: #cfd8dc;
+  }
+  
+  /* ================================
+     ANIMAÇÕES
+     ================================ */
+  @keyframes slideUp {
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .fade-change {
+    animation: fadeChange 0.8s ease;
+  }
+  
+  @keyframes fadeChange {
+    0% { opacity: 0; transform: translateY(-3px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* ================================
+     TEMAS AUTOMÁTICOS
+     ================================ */
+  .tema-feriado { background: linear-gradient(135deg, #fff8e1, #ffe082); color: #1b1b1b; }
+  .tema-recesso { background: linear-gradient(135deg, #e1f5fe, #b3e5fc); color: #1b1b1b; }
+  .tema-ferias { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); color: #1b1b1b; }
+  .tema-exames { background: linear-gradient(135deg, #ffcdd2, #ef9a9a); color: #1b1b1b; }
+  .tema-fimdesemana { background: linear-gradient(135deg, #ede7f6, #d1c4e9); color: #1b1b1b; }
+  
+  /* ================================
+     RESPONSIVIDADE
+     ================================ */
+  @media (max-width: 768px) {
+    .bus-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .bus-card {
+      width: 85%;
+    }
+  
+    h1 {
+      font-size: 1.5em;
+    }
+  
+    #event-banner {
+      font-size: 0.95em;
+    }
+  
+    header::before {
+      width: 70px;
+      height: 70px;
+      left: 20px;
+      top: 20px;
+    }
+  }
+  

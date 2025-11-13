@@ -1,0 +1,84 @@
+{
+  "especiais": [
+    {
+      "data": "2025-01-01",
+      "nome": "Feriado de Ano Novo",
+      "tipo": "feriado"
+    },
+    {
+      "data": "2025-02-22",
+      "nome": "Início do Período Letivo - 1º Semestre",
+      "tipo": "ferias"
+    },
+    {
+      "data": "2025-03-04",
+      "nome": "Recesso Escolar - Carnaval",
+      "tipo": "recesso"
+    },
+    {
+      "data": "2025-04-21",
+      "nome": "Tiradentes",
+      "tipo": "feriado"
+    },
+    {
+      "data": "2025-05-01",
+      "nome": "Dia do Trabalhador",
+      "tipo": "feriado"
+    },
+    {
+      "data": "2025-06-12",
+      "nome": "Feriado de Corpus Christi",
+      "tipo": "feriado"
+    },
+    {
+      "data": "2025-07-01",
+      "nome": "Início das Férias de Meio de Ano",
+      "tipo": "ferias"
+    },
+    {
+      "data": "2025-08-01",
+      "nome": "Retorno às Aulas - 2º Semestre",
+      "tipo": "recesso"
+    },
+    {
+      "data": "2025-09-07",
+      "nome": "Independência do Brasil",
+      "tipo": "feriado"
+    },
+    {
+      "data": "2025-10-12",
+      "nome": "Nossa Senhora Aparecida",
+      "tipo": "feriado"
+    },
+    {
+      "data": "2025-10-13",
+      "nome": "Recesso Acadêmico - Ponto Facultativo",
+      "tipo": "recesso"
+    },
+    {
+      "data": "2025-11-15",
+      "nome": "Proclamação da República",
+      "tipo": "feriado"
+    },
+    {
+      "data": "2025-12-15",
+      "nome": "Semana de Exames Finais",
+      "tipo": "exames"
+    },
+    {
+      "data": "2025-12-20",
+      "nome": "Início das Férias de Final de Ano",
+      "tipo": "ferias"
+    },
+    {
+      "data": "2025-12-25",
+      "nome": "Natal",
+      "tipo": "feriado"
+    },
+    {
+      "data": "2025-12-31",
+      "nome": "Recesso de Ano Novo",
+      "tipo": "recesso"
+    }
+  ]
+}

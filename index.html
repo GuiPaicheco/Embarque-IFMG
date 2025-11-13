@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Embarca IFMG</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ================================
+    ESTILO GERAL
+    ================================ */
+    * {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.4s ease;
+    }
+
+    body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #e0f7fa;
+    overflow: hidden;
+    background: linear-gradient(160deg, #0b2038, #143f59);
+    background-size: 200% 200%;
+    animation: gradientShift 18s ease infinite;
+    }
+
+    @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+    }
+
+    /* ================================
+    CABEÇALHO
+    ================================ */
+    header {
+    text-align: center;
+    margin-bottom: 45px;
+    animation: fadeIn 1.2s ease forwards;
+    }
+
+    /* Logo do IFMG */
+    header img {
+    width: 220px; /* Aumentado para destaque */
+    height: auto;
+    margin-bottom: 18px;
+    opacity: 0.97;
+    filter: drop-shadow(0 0 14px rgba(255,255,255,0.25));
+    animation: logoFloat 6s ease-in-out infinite;
+    }
+
+    /* Flutuação suave da logo */
+    @keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    }
+
+    header h1 {
+    font-size: 2.4em;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    margin: 0;
+    }
+
+    header p {
+    margin-top: 10px;
+    font-size: 1.05em;
+    font-weight: 400;
+    color: #b3e5fc;
+    opacity: 0.95;
+    }
+
+    /* ================================
+    CONTEÚDO PRINCIPAL
+    ================================ */
+    main {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    width: 270px;
+    height: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    transform: scale(1) translateY(15px);
+    opacity: 0;
+    animation: cardIn 1s forwards;
+    }
+
+    .card:nth-child(2) {
+    animation-delay: 0.3s;
+    }
+
+    .card:hover {
+    transform: scale(1.04);
+    background: rgba(255,255,255,0.12);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .card-icon {
+    font-size: 3.2em;
+    margin-bottom: 12px;
+    color: #81d4fa;
+    }
+
+    .card h2 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+    color: #e1f5fe;
+    font-weight: 600;
+    }
+
+    .card p {
+    font-size: 0.95em;
+    opacity: 0.9;
+    padding: 0 20px;
+    color: #cfd8dc;
+    line-height: 1.4em;
+    }
+
+    /* ================================
+    RODAPÉ
+    ================================ */
+    footer {
+    position: absolute;
+    bottom: 12px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #90caf9;
+    opacity: 0.9;
+    }
+
+    /* ================================
+    ANIMAÇÕES
+    ================================ */
+    @keyframes cardIn {
+    from { transform: scale(0.95) translateY(20px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ================================
+    RESPONSIVIDADE
+    ================================ */
+    @media (max-width: 600px) {
+    header img {
+        width: 130px;
+        margin-bottom: 12px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    header p {
+        font-size: 0.95em;
+    }
+
+    main {
+        gap: 30px;
+    }
+
+    .card {
+        width: 85%;
+        height: 220px;
+    }
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="ASSETS/logo-ifmg.png" alt="Logotipo IFMG">
+    <h1>Embarca IFMG</h1>
+    <p>Selecione a versão que deseja acessar</p>
+  </header>
+
+  <main>
+    <div class="card" onclick="window.location.href='Pages/monitor.html'">
+      <div class="card-icon">🖥️</div>
+      <h2>Modo Monitor</h2>
+      <p>Tela fixa exibida no campus, sem interação — atualizada automaticamente em tempo real.</p>
+    </div>
+
+    <div class="card" onclick="window.location.href='Pages/mobile.html'">
+      <div class="card-icon">📱</div>
+      <h2>Modo Mobile</h2>
+      <p>Aplicativo interativo para alunos e servidores — permite pequenas ações e consultas personalizadas.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>Desenvolvido por alunos de Ciência da Computação — IFMG Ibirité</p>
+  </footer>
+</body>
+</html>
