@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Embarca IFMG — Monitor</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/monitor.css">
+</head>
+
+<body>
+  <header class="monitor-header">
+    <div class="header-inner">
+
+      <img src="../ASSETS/IMGS/logo-ifmg.png" class="logo">
+
+      <div class="header-center">
+        <h1 class="main-title">EMBARQUE IFMG</h1>
+        <h2 class="sub-title">seu guia facilitado</h2>
+      </div>
+
+      <div class="header-right">
+        <div id="banner-hora" class="banner dark">Carregando...</div>
+        <div id="banner-clima" class="banner mid">Carregando...</div>
+      </div>
+
+    </div>
+  </header>
+
+
+
+  <main>
+    <section class="cards-area" id="cards-area"></section>
+
+    <aside class="side-calendar">
+      <h2 class="cal-title">📅 Calendário do Mês</h2>
+      <div id="mini-calendar" class="mini-calendar"></div>
+
+      <div class="legend">
+        <span class="dot feriado"></span> Feriado
+        <span class="dot recesso"></span> Recesso
+        <span class="dot ferias"></span> Férias
+        <span class="dot exames"></span> Exames
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <p>©Paicheco e Heringe — IFMG Ibirité</p>
+  </footer>
+
+  <script src="../DATA/dados.js"></script>
+  <script src="../DATA/cronograma.js"></script>
+  <script type="module" src="../JS/monitor.js"></script>
+</body>
+</html>
