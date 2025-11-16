@@ -1,275 +1,243 @@
-/* ================================
-   ESTILO GERAL - EMBARCA IFMG
-   Painel Monitor (Tema Unificado)
-   ================================ */
+/* =========================================================
+   BASE
+========================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
 
-   * {
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    transition: all 0.5s ease;
-  }
-  
-  body {
-    margin: 0;
-    background: linear-gradient(160deg, #0b2038, #143f59);
-    background-size: 200% 200%;
-    animation: gradientShift 18s ease infinite;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-    color: #e0f7fa;
-  }
-  
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  
-  /* ================================
-     CABEÇALHO
-     ================================ */
-  header {
-    text-align: center;
-    padding: 25px;
-    width: 100%;
-    backdrop-filter: blur(8px);
-    animation: fadeIn 1s ease forwards;
-    position: relative;
-    color: #e1f5fe;
-  }
-  
-  .top-bar {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  h1 {
-    margin: 0;
-    font-size: 1.9em;
-    font-weight: 700;
-    color: #ffffff;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    text-align: center;
-  }
-  
-  /* Logo do IFMG */
-  header::before {
-    content: "";
-    background: url("../ASSETS/logo-ifmg.png") no-repeat center/contain;
-    position: absolute;
-    top: 25px;
-    left: 40px;
-    width: 100px;
-    height: 100px;
-    opacity: 0.85;
-    filter: drop-shadow(0 0 8px rgba(255,255,255,0.2));
-    animation: logoFloat 6s ease-in-out infinite;
-  }
-  
-  @keyframes logoFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
-  
-  /* STATUS */
-  #status-indicador {
-    position: absolute;
-    right: 25px;
-    top: 10px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 10px;
-    background: rgba(255,255,255,0.15);
-    font-size: 0.95em;
-    box-shadow: 0 0 10px rgba(0,0,0,0.25);
-  }
-  
-  #event-banner {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: rgba(0,0,0,0.4);
-    color: #fff;
-    padding: 8px 0;
-    font-weight: 500;
-    font-size: 1.05em;
-    letter-spacing: 0.3px;
-  }
-  
-  .hidden { display: none; }
-  
-  #clock {
-    margin-top: 8px;
-    font-size: 1.1em;
-    font-weight: 500;
-    color: #b3e5fc;
-  }
-  
-  #weather {
-    margin-top: 8px;
-    font-size: 1.05em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #b3e5fc;
-  }
-  
-  /* ================================
-     CONTEÚDO PRINCIPAL
-     ================================ */
-  main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .bus-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: center;
-    align-items: stretch;
-    width: 90%;
-    max-width: 1200px;
-    padding-bottom: 30px;
-  }
-  
-  .bus-card {
-    background: rgba(255,255,255,0.1);
-    border-radius: 18px;
-    padding: 20px;
-    width: 330px;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-    backdrop-filter: blur(10px);
-    transform: translateY(20px);
-    opacity: 0;
-    animation: slideUp 1s ease forwards;
-    border: 1px solid rgba(255,255,255,0.15);
-  }
-  
-  .bus-card:nth-child(2) { animation-delay: 0.2s; }
-  .bus-card:nth-child(3) { animation-delay: 0.4s; }
-  
-  .bus-title {
-    font-size: 1.7em;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #e1f5fe;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-  }
-  
-  .bus-info,
-  .bus-times p {
-    font-size: 1.05em;
-    margin: 6px 0;
-    color: #cfd8dc;
-  }
-  
-  .highlight {
-    font-weight: 600;
-    color: #e1f5fe;
-  }
-  
-  /* ================================
-     RODAPÉ
-     ================================ */
-  footer {
-    text-align: center;
-    width: 100%;
-    padding: 15px;
-    font-size: 0.9em;
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
-    color: #b3e5fc;
-  }
-  
-  #eventos-mes {
-    margin-bottom: 10px;
-  }
-  
-  #eventos-mes h2 {
-    margin-bottom: 6px;
-    font-size: 1.1em;
-    color: #e1f5fe;
-  }
-  
-  #eventos-mes ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 0.95em;
-  }
-  
-  #eventos-mes li {
-    margin: 3px 0;
-    color: #cfd8dc;
-  }
-  
-  /* ================================
-     ANIMAÇÕES
-     ================================ */
-  @keyframes slideUp {
-    to { transform: translateY(0); opacity: 1; }
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  .fade-change {
-    animation: fadeChange 0.8s ease;
-  }
-  
-  @keyframes fadeChange {
-    0% { opacity: 0; transform: translateY(-3px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-  
-  /* ================================
-     TEMAS AUTOMÁTICOS
-     ================================ */
-  .tema-feriado { background: linear-gradient(135deg, #fff8e1, #ffe082); color: #1b1b1b; }
-  .tema-recesso { background: linear-gradient(135deg, #e1f5fe, #b3e5fc); color: #1b1b1b; }
-  .tema-ferias { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); color: #1b1b1b; }
-  .tema-exames { background: linear-gradient(135deg, #ffcdd2, #ef9a9a); color: #1b1b1b; }
-  .tema-fimdesemana { background: linear-gradient(135deg, #ede7f6, #d1c4e9); color: #1b1b1b; }
-  
-  /* ================================
-     RESPONSIVIDADE
-     ================================ */
-  @media (max-width: 768px) {
-    .bus-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .bus-card {
-      width: 85%;
-    }
-  
-    h1 {
-      font-size: 1.5em;
-    }
-  
-    #event-banner {
-      font-size: 0.95em;
-    }
-  
-    header::before {
-      width: 70px;
-      height: 70px;
-      left: 20px;
-      top: 20px;
-    }
-  }
-  
+body {
+  background: linear-gradient(#073444, #062b3a);
+  color: white;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+header {
+  width: 100%;
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.header-inner {
+  width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* logo */
+.logo {
+  width: 300px;
+  user-select: none;
+}
+
+/* centro */
+.header-center {
+  text-align: center;
+  flex: 1;
+}
+
+.main-title {
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.sub-title {
+  font-size: 22px;
+  font-weight: 300;
+  margin-top: 4px;
+  opacity: .9;
+}
+
+/* direita */
+.header-right {
+  width: 330px;
+  text-align: right;
+  font-size: 22px;
+}
+
+.banner {
+  font-size: 22px;
+  padding: 4px;
+  text-align: right;
+}
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  padding: 0 40px;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+.cards-area {
+  display: flex;
+  gap: 40px;
+}
+
+.bus-card {
+  width: 312px;
+  height: 432px;
+  background: linear-gradient(#2b7bd4, #2c6fb8);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  animation: fadeUp 0.8s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* top */
+.card-top {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  padding: 10px 0;
+}
+
+/* corpo */
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.card-route {
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.card-times {
+  margin-top: 15px;
+  display: grid;
+  gap: 8px;
+  font-size: 20px;
+}
+
+.card-times .label {
+  font-weight: 700;
+}
+
+.card-estimate {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+.card-progress {
+  width: 100%;
+  height: 6px;
+  border-radius: 6px;
+  background: rgba(0,0,0,0.25);
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  background: white;
+  transition: width 0.4s ease;
+}
+
+/* Glow quando 90%+ */
+.progress-fill.near {
+  box-shadow: 0px 0px 12px 4px rgba(255,255,255,0.85);
+}
+
+/* =========================================================
+   CALENDAR
+========================================================= */
+.side-calendar {
+  width: 400px;
+}
+
+.cal-title {
+  font-size: 30px;
+}
+
+.mini-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.mini-calendar .day {
+  background: rgba(255,255,255,0.08);
+  text-align: center;
+  padding: 6px 0;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* hoje */
+.day.today {
+  background: #0b74a6;
+}
+
+/* eventos */
+.day.feriado { background: #ffd79c79; }
+.day.recesso { background: #ffd79c79; }
+.day.ferias {  background: #ffd79c79; }
+.day.exames {  background: #ffd79c79; }
+
+.legend {
+  margin-top: 14px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.legend .dot {
+  width: 50px;
+  height: 10px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+/* cores legenda */
+.dot.feriado { background: #ffd89c; }
+.dot.recesso { background: #ffcba4; }
+.dot.ferias  { background: #b5e8b5; }
+.dot.exames  { background: #ffb3b3; }
+
+/* =========================================================
+   FOOTER
+========================================================= */
+footer {
+  padding: 12px;
+  text-align: center;
+  opacity: 0.7;
+}
