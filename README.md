@@ -1,0 +1,3 @@
+BAIXE O SITE E RODE ELE LOCALMENTE!!
+Por alguma razão que ainda tô tentando descobrir, não consigo hospedar direito ele aqui 😭
+Tive problema com .JSON e acho que agora é por causa do JavaScript, mas não consigo afirmar nada ainda...
