@@ -1,400 +1,256 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Embarque IFMG — Protótipo (Local)</title>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<style>
-  /* ---------- FONT & RESET ---------- */
-  @media (prefers-reduced-motion: no-preference) {
-    :root { --motion: 300ms; --motion-ease: cubic-bezier(.2,.9,.3,1); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    :root { --motion: 0ms; --motion-ease: linear; }
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background: linear-gradient(180deg,#f6f7fb 0%, #ffffff 100%);
-    color:#222;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    padding:28px;
-  }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Embarque IFMG</title>
 
-  /* ---------- LAYOUT ---------- */
-  .wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start}
-  header{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:6px}
-  .brand {display:flex;flex-direction:column}
-  .brand h1{font-size:1.6rem;color:#28123d;letter-spacing:-0.02em}
-  .brand p{font-size:0.95rem;color:#57555f;margin-top:6px}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-  /* ---------- CARDS ---------- */
-  .card{
-    background:#fff;border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(34,28,60,0.06);
-    transition:transform var(--motion) var(--motion-ease), box-shadow var(--motion) var(--motion-ease);
-  }
-  .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(34,28,60,0.09)}
+    <style>
+        /* ============================================
+        EMBARQUE IFMG - INDEX.CSS EMBUTIDO
+        Página inicial moderna e elegante
+        ============================================ */
 
-  /* ---------- LEFT: Conteúdo ---------- */
-  .content{display:flex;flex-direction:column;gap:18px}
-  .section-title{display:flex;align-items:center;gap:12px}
-  .section-title h2{font-size:1.15rem;color:#2b2b2b}
-  .muted{color:#6b6b75;font-size:0.95rem}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-  .grid-two{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:10px}
-  .list{list-style:disc;padding-left:18px;color:#444}
+        body {
+            overflow-x: hidden;
+        }
 
-  /* ---------- RIGHT: Preview (Monitor/Mobile) ---------- */
-  .preview {position:sticky;top:28px}
-  .preview .tabs{display:flex;gap:8px;margin-bottom:12px}
-  .tab{padding:8px 12px;border-radius:10px;background:#f1edf9;color:#4b317e;font-weight:600;cursor:pointer;border:1px solid rgba(75,49,126,0.07)}
-  .tab[aria-selected="true"]{background:#6c4edb;color:#fff;box-shadow:0 8px 20px rgba(108,78,219,0.18)}
+        /* =======================================
+        SEÇÃO HERO
+        ======================================= */
 
-  /* monitor mock */
-  .monitor {
-    width:100%;height:300px;border-radius:12px;background:linear-gradient(180deg,#0f1723 0%,#0b1220 100%);color:#fff;padding:18px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;overflow:hidden;
-  }
-  .monitor .top{display:flex;justify-content:space-between;align-items:center}
-  .monitor .top .left{display:flex;flex-direction:column;gap:4px}
-  .monitor .title{font-weight:700;font-size:1.05rem;color:#e9e7ff}
-  .monitor .subtitle{font-size:0.88rem;color:rgba(233,231,255,0.85)}
-  .monitor .list{background:rgba(255,255,255,0.03);padding:10px;border-radius:10px;display:flex;flex-direction:column;gap:8px}
-  .mon-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px}
-  .line-badge{background:rgba(255,255,255,0.06);padding:6px 10px;border-radius:8px;font-weight:700}
-  .eta{font-weight:700;color:#ffe9b8}
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: url('ASSETS/bg-tech.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
 
-  /* mobile mock */
-  .mobile {
-    width:100%;height:500px;border-radius:12px;background:linear-gradient(180deg,#fff 0%,#fbfbfe 100%);padding:14px;display:flex;flex-direction:column;gap:12px;border:1px solid rgba(40,18,61,0.06);
-  }
-  .mobile .toolbar{display:flex;justify-content:space-between;align-items:center}
-  .mobile .toolbar .screen-title{font-weight:700;color:#2b2b2b}
-  .select{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(40,18,61,0.08);background:#fff}
-  .stop-map{flex:1;background:linear-gradient(180deg,#f7f7fb 0%,#eef0ff 100%);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:10px;align-items:stretch}
-  .map-row{display:flex;justify-content:space-between;align-items:center}
-  .bus-pos{height:8px;background:linear-gradient(90deg,#caa6ff,#6c4edb);border-radius:10px;position:relative;overflow:hidden}
-  .bus-dot{width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 4px 10px rgba(108,78,219,0.2);position:absolute;top:50%;transform:translateY(-50%);transition:left 700ms var(--motion-ease)}
-  .meta{font-size:0.92rem;color:#333}
+        .hero .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(3px);
+        }
 
-  /* buttons */
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:#6c4edb;color:white;font-weight:700;border:none;cursor:pointer}
-  .ghost{background:transparent;border:1px solid rgba(108,78,219,0.12);color:#4b317e;padding:8px 12px;border-radius:10px}
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 1.3s ease forwards;
+            padding: 20px;
+            max-width: 900px;
+        }
 
-  /* footer small */
-  .foot{grid-column:1/-1;text-align:center;color:#6b6b75;font-size:0.9rem;margin-top:18px}
+        .logo {
+            width: 210px;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
+        }
 
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width:980px){
-    .wrap{grid-template-columns:1fr;gap:18px}
-    .preview{position:static}
-    .monitor{height:240px}
-    .mobile{height:420px}
-  }
-</style>
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.18);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        .btn-start {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 15px 35px;
+            font-size: 1.15rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #3a83ff, #0051c9);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            transition: 0.4s ease;
+        }
+
+        .btn-start:hover {
+            transform: scale(1.07);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+        }
+
+        /* =======================================
+        SEÇÃO SOBRE
+        ======================================= */
+
+        .sobre {
+            padding: 60px 20px;
+            text-align: center;
+            background: #f7f9ff;
+        }
+
+        .sobre h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .sobre p {
+            max-width: 800px;
+            margin: auto;
+            font-size: 1.05rem;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        /* =======================================
+        CARDS EXPLICATIVOS
+        ======================================= */
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            padding: 50px 20px;
+            background: #ffffff;
+        }
+
+        .card {
+            width: 320px;
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.22);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 1.35rem;
+        }
+
+        .card p {
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        /* =======================================
+        FOOTER
+        ======================================= */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #f0f0f0;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        /* =======================================
+        ANIMAÇÕES
+        ======================================= */
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =======================================
+        RESPONSIVIDADE
+        ======================================= */
+
+        @media (max-width: 650px) {
+            h1 { font-size: 2.3rem; }
+            .subtitle { font-size: 1rem; }
+            .logo { width: 150px; }
+        }
+    </style>
+
 </head>
+
 <body>
-  <div class="wrap" role="main">
-    <header>
-      <div class="brand" aria-hidden="false">
-        <h1>Embarque IFMG</h1>
-        <p class="muted">Protótipo front-end — Monitor & Mobile (simulação local)</p>
-      </div>
-      <div style="display:flex;gap:10px;align-items:center">
-        <button class="ghost" id="btn-export" title="Exportar dados simulados">Exportar JSON</button>
-        <a class="btn" id="btn-reset">Reiniciar simulação</a>
-      </div>
+
+    <header class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+
+            <img src="ASSETS/logo.png" class="logo">
+
+            <h1>EMBARQUE IFMG</h1>
+            <p class="subtitle">Seu guia inteligente de transporte — direto, intuitivo e sempre acessível.</p>
+
+            <a href="https://guipaicheco.github.io/Embarque-IFMG/Pages/mainpage.html" class="btn-start">
+                Acessar Página Principal
+            </a>
+        </div>
     </header>
 
-    <!-- LEFT: Descrição / Planejamento -->
-    <section class="content">
-      <div class="card">
-        <div class="section-title">
-          <h2>Planejamento do Projeto</h2>
-        </div>
-        <p class="muted">Descrição resumida — foco em front-end, dados simulados e usabilidade.</p>
-
-        <div style="margin-top:12px">
-          <strong>Entregáveis:</strong>
-          <ul class="list">
-            <li>Documento de planejamento com objetivos, público-alvo, funcionalidades e tecnologias.</li>
-            <li>Cronograma básico (versões protótipo para monitor e mobile).</li>
-          </ul>
-        </div>
-
-        <div style="margin-top:12px">
-          <strong>Avaliação (15 pts):</strong>
-          <ul class="list">
-            <li>Coerência entre problema e solução — 5 pts</li>
-            <li>Clareza na definição de requisitos — 5 pts</li>
-            <li>Viabilidade técnica — 5 pts</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="grid-two">
-        <div class="card" aria-labelledby="obj">
-          <h3 id="obj" style="font-size:1rem;margin-bottom:8px">Objetivo Geral</h3>
-          <p class="muted">Desenvolver uma solução visual e interativa, focada em front-end, para organizar informações de transporte do campus.</p>
-        </div>
-
-        <div class="card" aria-labelledby="tech">
-          <h3 id="tech" style="font-size:1rem;margin-bottom:8px">Tecnologias</h3>
-          <p class="muted">HTML, CSS, JavaScript (local), Flutter/React Native (opcional para app nativo — não aplicado aqui).</p>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top:12px">
-        <h3 style="font-size:1rem;margin-bottom:8px">Cronograma Básico</h3>
-        <ol class="muted" style="padding-left:18px">
-          <li>Semana 1 — Levantamento e prototipagem (Figma)</li>
-          <li>Semana 2 — Desenvolvimento do Monitor</li>
-          <li>Semana 3 — Desenvolvimento Mobile + integração visual</li>
-          <li>Semana 4 — Testes e ajustes finais</li>
-        </ol>
-      </div>
+    <section class="sobre">
+        <h2>O que é o Embarque IFMG?</h2>
+        <p>
+            O <strong>Embarque IFMG</strong> nasceu com o objetivo de facilitar a vida de estudantes e servidores 
+            do IFMG Ibirité, oferecendo uma plataforma moderna e prática para acessar informações sobre os ônibus 
+            que atendem o campus.  
+            <br><br>
+            Toda a aplicação funciona exclusivamente em <strong>front-end</strong>, com dados simulados, garantindo
+            independência de servidores externos e máxima estabilidade — ideal para monitores, dispositivos móveis
+            e apresentações de projeto.
+        </p>
     </section>
 
-    <!-- RIGHT: Preview -->
-    <aside class="preview">
-      <div class="card">
-        <div class="tabs" role="tablist" aria-label="Visualizações">
-          <button class="tab" role="tab" aria-selected="true" data-mode="monitor">Monitor</button>
-          <button class="tab" role="tab" aria-selected="false" data-mode="mobile">Mobile</button>
+    <section class="cards">
+
+        <div class="card">
+            <h3>📺 Modelo Monitor</h3>
+            <p>
+                Exibido em um monitor fixo, sem interação.  
+                Apresenta horários, clima, eventos, simulação de chegada e atualizações automáticas.
+            </p>
         </div>
 
-        <!-- MONITOR VIEW -->
-        <div id="monitorView" class="monitor" aria-live="polite">
-          <div class="top">
-            <div class="left">
-              <div class="title">Painel do Campus — IFMG Ibirité</div>
-              <div class="subtitle" id="monitor-date">—</div>
-            </div>
-            <div style="text-align:right">
-              <div style="font-size:0.9rem;color:#cfc9ff">Status</div>
-              <div style="font-weight:800;color:#dff3ff">Simulado</div>
-            </div>
-          </div>
-
-          <div class="list" id="monitor-list" role="list">
-            <!-- itens gerados por JS -->
-          </div>
-
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div style="font-size:0.95rem;color:#d8d6ff">Última atualização: <span id="monitor-last">—</span></div>
-            <div style="font-size:0.95rem;color:#fff"><small>Embarque IFMG</small></div>
-          </div>
+        <div class="card">
+            <h3>📱 Modelo Mobile</h3>
+            <p>
+                Versão interativa inspirada em um aplicativo, permitindo ao usuário consultar horários, 
+                simular rotas e visualizar previsões de forma dinâmica.
+            </p>
         </div>
 
-        <!-- MOBILE VIEW (hidden por padrão) -->
-        <div id="mobileView" class="mobile" style="display:none" aria-hidden="true">
-          <div class="toolbar">
-            <div class="screen-title">App Embarque</div>
-            <div style="font-size:0.85rem;color:#6b6b75" id="mobile-time">—</div>
-          </div>
-
-          <label for="lineSelect" style="font-size:0.9rem;color:#444">Escolha a linha</label>
-          <select id="lineSelect" class="select" aria-label="Selecionar linha">
-            <!-- options geradas por JS -->
-          </select>
-
-          <div class="stop-map">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <div>
-                <div class="meta" id="mobile-line-name">Linha —</div>
-                <div class="muted" id="mobile-schedule">Horário: —</div>
-              </div>
-              <div style="text-align:right">
-                <div class="muted">Próxima chegada</div>
-                <div class="eta" id="mobile-eta">—</div>
-              </div>
-            </div>
-
-            <div>
-              <div class="muted" style="margin-bottom:6px">Posição aproximada</div>
-              <div style="height:18px;background:rgba(40,18,61,0.04);border-radius:12px;padding:6px">
-                <div class="bus-pos" id="track" aria-hidden="true">
-                  <div class="bus-dot" id="busDot" style="left:0%"></div>
-                </div>
-              </div>
-            </div>
-
-            <div style="display:flex;gap:8px;justify-content:flex-end">
-              <button class="ghost" id="btn-sim-step">Avançar simulação</button>
-              <button class="btn" id="btn-fav">Favoritar</button>
-            </div>
-          </div>
+        <div class="card">
+            <h3>🎯 Objetivos do Projeto</h3>
+            <p>
+                Modernizar a comunicação interna, promover autonomia aos estudantes,  
+                incentivar boas práticas de programação e entregar uma solução funcional e elegante.
+            </p>
         </div>
 
-      </div>
-    </aside>
+    </section>
 
-    <div class="foot">
-      Template protótipo — dados simulados localmente • Fácil edição para cronograma/documento
-    </div>
-  </div>
+    <footer>
+        <p>Projeto acadêmico desenvolvido por alunos do IFMG Ibirité.</p>
+        <p>2025 — Embarque IFMG</p>
+    </footer>
 
-<script>
-/* ---------- DADOS SIMULADOS ---------- */
-const BUS_LINES = [
-  { id: '1012', name:'Linha 1012', stops:['Saída Central','Rua A','Portaria IFMG'], schedule:['07:00','08:30','10:00','12:30','15:00'] },
-  { id: '3302', name:'Linha 3302', stops:['Terminal Norte','Av. B','Portaria IFMG'], schedule:['06:45','09:15','11:00','13:30','17:00'] },
-  { id: '3770', name:'Linha 3770', stops:['Terminal Sul','Rua C','Portaria IFMG'], schedule:['07:20','10:00','12:00','14:30','18:00'] }
-];
-
-let simTime = new Date(); // tempo simulado (inicia agora)
-let simTick = 0; // passo da simulação (incremento)
-const DATE_OPTS = { weekday:'short', year:'numeric', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' };
-
-/* ---------- INIT ---------- */
-const tabs = document.querySelectorAll('.tab');
-const monitorView = document.getElementById('monitorView');
-const mobileView = document.getElementById('mobileView');
-const monitorList = document.getElementById('monitor-list');
-const monitorDate = document.getElementById('monitor-date');
-const monitorLast = document.getElementById('monitor-last');
-const mobileTime = document.getElementById('mobile-time');
-const lineSelect = document.getElementById('lineSelect');
-const mobileLineName = document.getElementById('mobile-line-name');
-const mobileSchedule = document.getElementById('mobile-schedule');
-const mobileETA = document.getElementById('mobile-eta');
-const busDot = document.getElementById('busDot');
-const btnSimStep = document.getElementById('btn-sim-step');
-const btnReset = document.getElementById('btn-reset');
-const btnExport = document.getElementById('btn-export');
-const btnFav = document.getElementById('btn-fav');
-
-function formatDate(d){ return d.toLocaleString('pt-BR', DATE_OPTS); }
-function pad(n){ return n.toString().padStart(2,'0'); }
-
-/* populate select */
-function populateLines(){
-  lineSelect.innerHTML = BUS_LINES.map(l=>`<option value="${l.id}">${l.id} — ${l.name}</option>`).join('');
-}
-populateLines();
-
-/* update monitor: show each line next arrival and ETA (simulado) */
-function computeETA(schedule, now){
-  // schedule array like ["07:00","08:30",..."]
-  // find next occurrence (today), return minutes until next
-  const today = new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  for(let t of schedule){
-    const parts = t.split(':').map(Number);
-    const dt = new Date(today.getTime());
-    dt.setHours(parts[0], parts[1], 0, 0);
-    if(dt.getTime() >= now.getTime()){
-      return Math.round((dt - now)/60000); // minutes
-    }
-  }
-  // se nenhuma mais hoje, retorna até primeira do dia seguinte
-  const firstParts = schedule[0].split(':').map(Number);
-  const dtNext = new Date(today.getTime()+24*3600*1000);
-  dtNext.setHours(firstParts[0], firstParts[1], 0, 0);
-  return Math.round((dtNext - now)/60000);
-}
-
-function updateMonitor(){
-  const now = new Date(simTime.getTime());
-  monitorDate.textContent = formatDate(now);
-  monitorLast.textContent = formatDate(now);
-  monitorList.innerHTML = BUS_LINES.map(l=>{
-    const eta = computeETA(l.schedule, now);
-    let etaText = eta<=1 ? 'Agora' : (eta+' min');
-    return `
-      <div class="mon-item" role="listitem">
-        <div style="display:flex;gap:12px;align-items:center">
-          <div class="line-badge">${l.id}</div>
-          <div>
-            <div style="font-weight:700">${l.name}</div>
-            <div style="font-size:0.9rem;color:rgba(233,231,255,0.85)">${l.stops[l.stops.length-1]}</div>
-          </div>
-        </div>
-        <div style="text-align:right">
-          <div style="font-size:0.95rem;color:#fff">${etaText}</div>
-          <div style="font-size:0.8rem;color:rgba(233,231,255,0.6)">${now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</div>
-        </div>
-      </div>`;
-  }).join('');
-}
-
-/* update mobile based on selected line */
-function updateMobileView(){
-  const now = new Date(simTime.getTime());
-  mobileTime.textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-  const id = lineSelect.value || BUS_LINES[0].id;
-  const line = BUS_LINES.find(l=>l.id===id);
-  mobileLineName.textContent = `${line.id} — ${line.name}`;
-  mobileSchedule.textContent = `Horários: ${line.schedule.join(' · ')}`;
-  const eta = computeETA(line.schedule, now);
-  mobileETA.textContent = eta<=1 ? 'Agora' : (eta+' min');
-
-  // simulate position: map eta to percentage (0% = próximo, 100% = longe)
-  // We'll invert: smaller ETA -> dot more to right (closer)
-  let percent = Math.max(0, Math.min(100, 100 - Math.min(100, eta)));
-  busDot.style.left = percent + '%';
-}
-
-/* simulation step */
-function simStep(){
-  simTick++;
-  simTime = new Date(simTime.getTime() + 2*60*1000); // avança 2 minutos por passo
-  updateMonitor();
-  updateMobileView();
-}
-
-/* tabs */
-tabs.forEach(t=>{
-  t.addEventListener('click', ()=>{
-    tabs.forEach(x=>x.setAttribute('aria-selected','false'));
-    t.setAttribute('aria-selected','true');
-    const mode = t.dataset.mode;
-    if(mode==='monitor'){
-      monitorView.style.display='flex';
-      mobileView.style.display='none';
-      mobileView.setAttribute('aria-hidden','true');
-      monitorView.setAttribute('aria-hidden','false');
-    } else {
-      monitorView.style.display='none';
-      mobileView.style.display='flex';
-      mobileView.setAttribute('aria-hidden','false');
-      monitorView.setAttribute('aria-hidden','true');
-    }
-  });
-});
-
-/* handlers */
-lineSelect.addEventListener('change', updateMobileView);
-btnSimStep.addEventListener('click', simStep);
-btnReset.addEventListener('click', ()=>{ simTime = new Date(); simTick = 0; updateMonitor(); updateMobileView(); });
-btnExport.addEventListener('click', ()=>{
-  const data = { exportedAt: new Date().toISOString(), lines: BUS_LINES };
-  const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'embarque-ifmg-simulated-data.json';
-  document.body.appendChild(a); a.click(); a.remove();
-  URL.revokeObjectURL(url);
-});
-btnFav.addEventListener('click', ()=>{
-  btnFav.textContent = 'Favoritado ✓';
-  btnFav.disabled = true;
-  btnFav.style.opacity = 0.9;
-});
-
-/* start */
-(function init(){
-  // Fill initial selections
-  if(!lineSelect.value) lineSelect.value = BUS_LINES[0].id;
-  updateMonitor();
-  updateMobileView();
-
-  // auto-step every 8 seconds (simulação contínua) — se usuário preferir reduzir movimento, pode desativar
-  window.autoSim = setInterval(simStep, 8000);
-})();
-</script>
 </body>
 </html>
-
