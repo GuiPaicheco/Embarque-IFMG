@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Embarque IFMG — Template Inspirado</title>
+
+    <style>
+        /* --------------------- RESET ---------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        body {
+            background: #f7f7fb;
+            color: #2b2b2b;
+            line-height: 1.6;
+        }
+
+        /* --------------------- LAYOUT ---------------------- */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #2b2b2b;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .section {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #3d3d3d;
+        }
+
+        .section p,
+        .section li {
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        /* --------------------- CALL TO ACTION ---------------------- */
+        .cta-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 16px 34px;
+            background: #6c4edb;
+            color: white;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: #5537c8;
+        }
+
+        /* --------------------- FOOTER ---------------------- */
+        footer {
+            text-align: center;
+            margin: 50px 0;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* --------------------- RESPONSIVO ---------------------- */
+        @media (max-width: 700px) {
+            header h1 {
+                font-size: 2.3rem;
+            }
+
+            .section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Embarque IFMG</h1>
+        <p>Simulação visual e interativa dos horários de transporte do campus IFMG Ibirité</p>
+    </header>
+
+    <!-- Seção 1 -->
+    <section class="section">
+        <h2>Modelo Monitor</h2>
+        <p>Um painel visual instalado na portaria, exibindo:</p>
+        <ul>
+            <li>Horário da última passagem</li>
+            <li>Localização simulada do ônibus</li>
+            <li>Previsão aproximada de chegada</li>
+            <li>Data e hora atual</li>
+        </ul>
+        <p>Sem necessidade de interação do usuário.</p>
+    </section>
+
+    <!-- Seção 2 -->
+    <section class="section">
+        <h2>Modelo Mobile</h2>
+        <p>Aplicativo leve e intuitivo que permite:</p>
+        <ul>
+            <li>Escolher a linha do ônibus</li>
+            <li>Ver horários aproximados de saída e chegada</li>
+            <li>Acompanhar localização aproximada simulada</li>
+        </ul>
+        <p>Funciona sem servidor ou APIs externas.</p>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-container">
+        <a href="#" class="btn">Ver Protótipo</a>
+    </div>
+
+    <footer>
+        © 2025 Embarque IFMG — Template inspirado no estilo Gamma
+    </footer>
+
+</body>
+</html>
