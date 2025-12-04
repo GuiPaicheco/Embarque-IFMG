@@ -76,6 +76,19 @@
             opacity: 0.9;
         }
 
+        .guide-text {
+        position: absolute;
+        right: 25px;
+        bottom: 25px;
+        font-size: 1rem;
+        color: #fff;
+        opacity: 0.85;
+        z-index: 15;
+        text-shadow: 0 0 8px rgba(0,0,0,0.6);
+        animation: infinite Jumping 4s ease forwards;
+        }
+
+
         .btn-start {
             display: inline-block;
             margin-top: 28px;
@@ -176,6 +189,12 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes Jumping {
+            0% { opacity: 0; transform: translateY(0); }
+            50%{opacity: 1; transform: translateY(20px);}
+            100% { opacity: 0; transform: translateY(0); }
+        }
+
         /* =======================================
         RESPONSIVIDADE
         ======================================= */
@@ -204,6 +223,7 @@
                 Acessar Página Principal
             </a>
         </div>
+        <p class="guide-text">Arraste para baixo para saber mais!!</p>
     </header>
 
     <section class="sobre">
