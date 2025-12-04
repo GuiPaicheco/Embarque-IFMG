@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Embarque IFMG – Versão Mobile</title>
+
+    <!-- Fonte -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS do Mobile -->
+    <link rel="stylesheet" href="../CSS/mobile.css">
+</head>
+
+<body>
+
+    <!-- ========================================
+         CABEÇALHO
+    ========================================= -->
+    <header class="app-header">
+        <div class="header-top">
+            <img src="../ASSETS/logo.png" class="logo">
+
+            <div class="status-box">
+                <span id="status-indicador">🟡 Inicializando...</span>
+            </div>
+        </div>
+
+        <h1 class="titulo-app">Embarque IFMG – Mobile</h1>
+        <p class="subtitulo-app">Consulte horários, previsões e informações rapidamente</p>
+
+        <div id="clock">Carregando hora...</div>
+        <div id="weather">Carregando clima...</div>
+    </header>
+
+    <!-- ========================================
+         SELETOR DE LINHA
+    ========================================= -->
+    <section class="linha-selector">
+        <h2>Selecione a Linha</h2>
+
+        <div class="linha-buttons">
+            <button class="linha-btn" data-linha="1012">🚌 1012</button>
+            <button class="linha-btn" data-linha="1750">🚌 1750</button>
+            <button class="linha-btn" data-linha="1751">🚌 1751</button>
+        </div>
+    </section>
+
+    <!-- ========================================
+         ÁREA DO CARTÃO DA LINHA
+    ========================================= -->
+    <main class="conteudo">
+        <div id="linhaCard" class="linha-card hidden">
+
+            <h2 id="linhaNome">Linha —</h2>
+
+            <div class="info-box">
+                <p id="infoExtra">—</p>
+            </div>
+
+            <div class="horarios-box">
+                <p>🕓 Anterior: <span id="horaAnterior" class="destaque">—</span></p>
+                <p>🚌 Atual: <span id="horaAtual" class="destaque">—</span></p>
+                <p>⏭ Próximo: <span id="horaProximo" class="destaque">—</span></p>
+            </div>
+
+            <div class="previsao-box">
+                ⏳ Próxima chegada em <span id="tempoRestante" class="destaque">—</span> min
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ========================================
+         RODAPÉ
+    ========================================= -->
+    <footer class="rodape">
+        <p>Versão Mobile (Simulação Web)</p>
+        <p>Embarque IFMG — 2025</p>
+    </footer>
+
+    <!-- Script principal -->
+    <script src="../JS/mobile.js"></script>
+</body>
+</html>
