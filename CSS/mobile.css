@@ -1,0 +1,228 @@
+/* ============================================================
+   EMBARQUE IFMG - MOBILE.CSS
+   Interface elegante simulando aplicativo mobile
+   ============================================================ */
+
+   * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #e8f0ff, #c7d8ff);
+    min-height: 100vh;
+    padding-bottom: 40px;
+    color: #1a1a1a;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.app-header {
+    text-align: center;
+    padding: 25px 15px;
+    background: rgba(255,255,255,0.35);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    backdrop-filter: blur(10px);
+    border-radius: 0 0 22px 22px;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 75px;
+    filter: drop-shadow(0 0 6px rgba(0,0,0,0.15));
+}
+
+.status-box {
+    padding: 6px 13px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.35);
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 0 8px rgba(0,0,0,0.15);
+}
+
+.titulo-app {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.subtitulo-app {
+    margin-top: 2px;
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+#clock, #weather {
+    margin-top: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* ============================================================
+   SELETOR DE LINHA
+   ============================================================ */
+
+.linha-selector {
+    padding: 25px;
+    text-align: center;
+}
+
+.linha-selector h2 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.linha-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.linha-btn {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #4a7bff, #1d4ed8);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    transition: 0.25s ease;
+}
+
+.linha-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+}
+
+/* ============================================================
+   CARTÃO DA LINHA
+   ============================================================ */
+
+.conteudo {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.linha-card {
+    width: 90%;
+    max-width: 450px;
+    background: rgba(255,255,255,0.55);
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    backdrop-filter: blur(15px);
+    animation: slideUp 0.8s ease forwards;
+}
+
+.hidden {
+    display: none;
+}
+
+.linha-card h2 {
+    font-size: 1.55rem;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.info-box {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 1rem;
+    opacity: 0.85;
+}
+
+.horarios-box {
+    margin-top: 12px;
+    padding: 10px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.08);
+    font-size: 1rem;
+}
+
+.horarios-box p {
+    margin: 5px 0;
+}
+
+.destaque {
+    font-weight: 600;
+    color: #1a3bb5;
+    font-size: 1.1rem;
+}
+
+.previsao-box {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+/* ============================================================
+   RODAPÉ
+   ============================================================ */
+
+.rodape {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+/* ============================================================
+   ANIMAÇÕES
+   ============================================================ */
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.fade {
+    animation: fadeUpdate 0.55s ease;
+}
+
+@keyframes fadeUpdate {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    0% { opacity: 0; transform: translateY(25px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   RESPONSIVIDADE
+   ============================================================ */
+
+@media (max-width: 480px) {
+    .linha-btn {
+        width: 80%;
+        padding: 15px 0;
+    }
+
+    .linha-card {
+        width: 95%;
+    }
+
+    .titulo-app {
+        font-size: 1.45rem;
+    }
+}
