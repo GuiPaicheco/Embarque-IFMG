@@ -1,0 +1,208 @@
+/* =====================================================
+   EMBARCA IFMG — STYLE.CSS
+   Autores: Paicheco & Heringe
+   ===================================================== */
+
+:root{
+  --green:#00ff9c;
+  --green-soft:rgba(0,255,156,.25);
+  --green-dark:#00c87a;
+  --alert:#ffda6a;
+  --bg1:#0f1b17;
+  --bg2:#050807;
+  --card1:#12211c;
+  --card2:#0b1311;
+  --text:#eafff6;
+}
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI", Arial, sans-serif;
+}
+
+/* BODY */
+body{
+  background:
+    linear-gradient(transparent 96%, rgba(0,255,156,.05) 97%),
+    radial-gradient(circle at top,var(--bg1),var(--bg2));
+  background-size:100% 4px,cover;
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 30px;
+  border-bottom:1px solid var(--green-soft);
+}
+
+header img{
+  height:54px;
+}
+
+header .tempo{
+  text-align:right;
+}
+
+header .hora{
+  font-size:2.2rem;
+  color:var(--green);
+}
+
+header .data{
+  font-size:.9rem;
+  opacity:.7;
+}
+
+header .clima{
+  font-size:.85rem;
+  opacity:.85;
+}
+
+/* MAIN */
+main{
+  padding:30px;
+  display:grid;
+  gap:26px;
+}
+
+/* CARD */
+.card{
+  background:linear-gradient(180deg,var(--card1),var(--card2));
+  border:1px solid var(--green-soft);
+  border-radius:20px;
+  padding:26px;
+  box-shadow:0 0 35px rgba(0,255,156,.12);
+  transition:.3s;
+}
+
+.card h2{
+  color:var(--green);
+  margin-bottom:6px;
+}
+
+.card .desc{
+  opacity:.85;
+  margin-bottom:16px;
+  font-size:.95rem;
+}
+
+/* STATUS */
+.status{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-bottom:14px;
+}
+
+.status div{
+  background:#0c1412;
+  padding:14px;
+  border-radius:14px;
+  text-align:center;
+  font-size:.85rem;
+}
+
+.status span{
+  display:block;
+  margin-top:6px;
+  font-size:1.05rem;
+  color:var(--green);
+}
+
+/* PROGRESSO */
+.progresso{
+  height:12px;
+  background:#07100d;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progresso span{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,var(--green),var(--green-dark));
+  transition:width .6s ease;
+}
+
+/* CHEGANDO */
+.card.chegando{
+  border-color:var(--alert);
+  box-shadow:0 0 45px rgba(255,218,106,.45);
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.01)}
+}
+
+/* MONITOR MODE */
+body.monitor main{
+  grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+}
+
+body.monitor .card{
+  padding:30px;
+}
+
+body.monitor .card h2{
+  font-size:1.5rem;
+}
+
+body.monitor .desc{
+  font-size:1rem;
+}
+
+/* INTERATIVO */
+.toolbar{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-bottom:10px;
+}
+
+.btn{
+  padding:12px 22px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  background:linear-gradient(90deg,var(--green),var(--green-dark));
+  color:#000;
+  font-weight:600;
+  transition:.25s;
+}
+
+.btn:hover{
+  transform:scale(1.06);
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:12px;
+  font-size:.75rem;
+  opacity:.5;
+}
+
+/* RESPONSIVO */
+@media(max-width:600px){
+  header{
+    flex-direction:column;
+    gap:10px;
+  }
+  header img{
+    height:46px;
+  }
+  main{
+    padding:20px;
+  }
+}
