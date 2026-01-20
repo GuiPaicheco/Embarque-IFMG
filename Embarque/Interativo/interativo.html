@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Embarque IFMG – Interativo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --bg: #0f0c29;
+      --card: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.15);
+      --text: #ffffff;
+      --accent: #9b5cff;
+      --accent-soft: rgba(155,92,255,0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: var(--text);
+      padding: 20px;
+    }
+
+    .topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .topo h1 {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .clock {
+      font-size: 14px;
+      opacity: 0.85;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .filtros {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    select {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 20px;
+      color: #9b5cff;
+    }
+
+    .horarios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 15px;
+    }
+
+    .horario-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 15px;
+      backdrop-filter: blur(8px);
+    }
+
+    .horario-card h3 {
+      margin: 0 0 10px 0;
+      color: var(--accent);
+    }
+
+    .horario-card p {
+      margin: 6px 0;
+      font-size: 14px;
+    }
+
+    .acoes {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    button {
+      flex: 1;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
+      color: var(--text);
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    button:hover {
+      background: var(--accent);
+    }
+
+    .sem-dados {
+      text-align: center;
+      opacity: 0.7;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="topo">
+      <h1>🚌 Embarque IFMG – Consulta Interativa</h1>
+      <div id="clock" class="clock"></div>
+    </div>
+
+    <div class="filtros">
+      <select id="onibus"></select>
+      <select id="rota"></select>
+    </div>
+
+    <div id="lista-horarios" class="horarios-grid"></div>
+    <div id="aviso" class="sem-dados"></div>
+
+  </div>
+
+  <script src="interativo.js"></script>
+</body>
+</html>

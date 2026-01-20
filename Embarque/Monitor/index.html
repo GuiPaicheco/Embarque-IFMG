@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor de Ônibus</title>
+    <link rel="stylesheet" href="templatemo-prism-flux.css">
+</head>
+
+<body>
+
+    <div id="clock" style="
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-size: 2rem;
+        font-weight: 500;
+        z-index: 9999;
+    ">
+    </div>
+
+<!-- Loader -->
+<div class="loader hidden" id="loader"></div>
+
+<!-- Hero / Monitor -->
+<section class="hero" id="home">
+    <div class="carousel-container">
+
+        <div class="carousel" id="carousel"></div>
+
+        <div class="carousel-controls">
+            <button class="carousel-btn" id="prevBtn">‹</button>
+            <button class="carousel-btn" id="nextBtn">›</button>
+        </div>
+
+        <div class="carousel-indicators" id="indicators"></div>
+
+    </div>
+</section>
+
+<script src="templatemo-prism-scripts.js"></script>
+</body>
+</html>
