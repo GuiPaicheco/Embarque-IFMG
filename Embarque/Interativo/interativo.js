@@ -11,7 +11,8 @@ const horariosBase = {
       { hora: "15:20", chegadaMedia: 45 },
       { hora: "17:10", chegadaMedia: 45 },
       { hora: "18:10", chegadaMedia: 45 },
-      { hora: "19:30", chegadaMedia: 45 }
+      { hora: "19:30", chegadaMedia: 45 },
+      { hora: "21:50", chegadaMedia: 45 }
     ],
     terminal: [
       { hora: "04:30", chegadaMedia: 75 },
@@ -24,7 +25,8 @@ const horariosBase = {
       { hora: "15:20", chegadaMedia: 75 },
       { hora: "17:10", chegadaMedia: 75 },
       { hora: "18:10", chegadaMedia: 75 },
-      { hora: "19:30", chegadaMedia: 75 }
+      { hora: "19:30", chegadaMedia: 75 },
+      { hora: "21:50", chegadaMedia: 75 }
     ]
   },
   "1750": {
@@ -204,3 +206,4 @@ function remover(chave) {
 }
 
 iniciar();
+
