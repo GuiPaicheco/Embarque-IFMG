@@ -1,3 +1,7 @@
+/* =======================
+   DADOS
+======================= */
+
 const portfolioData = [
   {
     id: 1,
@@ -50,173 +54,215 @@ const portfolioData = [
   }
 ];
 
+/* =======================
+   FUNÇÕES DE TEMPO
+======================= */
+
 function timeToSeconds(time) {
-    const [h, m] = time.split(':').map(Number);
-    return h * 3600 + m * 60;
-}
-
-function getBusStatus(horarios) {
-    const now = new Date();
-    const currentSeconds =
-        now.getHours() * 3600 +
-        now.getMinutes() * 60 +
-        now.getSeconds();
-
-    const list = horarios.map(timeToSeconds);
-
-    let anterior = '--';
-    let atual = 'Encerrado';
-    let proximo = '--';
-    let chegadaSegundos = null;
-
-    for (let i = 0; i < list.length; i++) {
-        if (list[i] >= currentSeconds) {
-            atual = horarios[i];
-            anterior = horarios[i - 1] ?? '--';
-            proximo = horarios[i + 1] ?? '--';
-            chegadaSegundos = list[i] - currentSeconds;
-            break;
-        }
-    }
-
-    return { anterior, atual, proximo, chegadaSegundos };
+  const [h, m] = time.split(":").map(Number);
+  return h * 3600 + m * 60;
 }
 
 function formatCountdown(seconds) {
-    if (seconds === null || seconds < 0) return '--';
-    const min = Math.floor(seconds / 60);
-    const sec = seconds % 60;
-    return `${min}min e ${sec.toString().padStart(2, '0')}s`;
+  if (seconds === null || seconds < 0) return "--";
+  const min = Math.floor(seconds / 60);
+  const sec = seconds % 60;
+  return `${min}min e ${sec.toString().padStart(2, "0")}s`;
 }
 
+/* =======================
+   STATUS DO ÔNIBUS
+======================= */
+
+function getBusStatus(horarios) {
+  const now = new Date();
+  const currentSeconds =
+    now.getHours() * 3600 +
+    now.getMinutes() * 60 +
+    now.getSeconds();
+
+  const list = horarios.map(timeToSeconds);
+
+  let anterior = "--";
+  let atual = "Encerrado";
+  let proximo = "--";
+  let chegadaSegundos = null;
+
+  for (let i = 0; i < list.length; i++) {
+    if (list[i] >= currentSeconds) {
+      atual = horarios[i];
+      anterior = horarios[i - 1] ?? "--";
+      proximo = horarios[i + 1] ?? "--";
+      chegadaSegundos = list[i] - currentSeconds;
+      break;
+    }
+  }
+
+  // Se o dia acabou
+  if (atual === "Encerrado" && horarios.length > 0) {
+    anterior = horarios[horarios.length - 1];
+  }
+
+  return { anterior, atual, proximo, chegadaSegundos };
+}
+
+/* =======================
+   CARROSSEL
+======================= */
+
 let currentIndex = 0;
-const carousel = document.getElementById('carousel');
-const indicators = document.getElementById('indicators');
+const carousel = document.getElementById("carousel");
+const indicators = document.getElementById("indicators");
 
 function createCard(data) {
-    const status = getBusStatus(data.horarios);
+  const status = getBusStatus(data.horarios);
 
-    const item = document.createElement('div');
-    item.className = 'carousel-item';
+  const item = document.createElement("div");
+  item.className = "carousel-item";
+  item.dataset.id = data.id;
 
-    item.innerHTML = `
-        <div class="card">
-            <div class="card-number">0${data.id}</div>
-            <div class="card-image">
-                <img src="${data.image}">
-            </div>
-            <h3 class="card-title">${data.title}</h3>
-            <p class="card-description"><b>Anterior:</b> ${status.anterior}</p>
-            <p class="card-description"><b>Atual:</b> ${status.atual}</p>
-            <p class="card-description"><b>Próximo:</b> ${status.proximo}</p>
-            <p class="card-description">
-                <b>Chegando em:</b>
-                <span class="countdown" data-time="${status.chegadaSegundos}">
-                    ${formatCountdown(status.chegadaSegundos)}
-                </span>
-            </p>
-        </div>
-    `;
-    return item;
+  item.innerHTML = `
+    <div class="card">
+      <div class="card-number">0${data.id}</div>
+      <div class="card-image">
+        <img src="${data.image}">
+      </div>
+      <h3 class="card-title">${data.title}</h3>
+
+      <p class="card-description anterior"><b>Anterior:</b> ${status.anterior}</p>
+      <p class="card-description atual"><b>Atual:</b> ${status.atual}</p>
+      <p class="card-description proximo"><b>Próximo:</b> ${status.proximo}</p>
+
+      <p class="card-description">
+        <b>Chegando em:</b>
+        <span class="countdown" data-time="${status.chegadaSegundos}">
+          ${formatCountdown(status.chegadaSegundos)}
+        </span>
+      </p>
+    </div>
+  `;
+  return item;
 }
 
 function initCarousel() {
-    carousel.innerHTML = '';
-    indicators.innerHTML = '';
+  carousel.innerHTML = "";
+  indicators.innerHTML = "";
 
-    portfolioData.forEach((data, i) => {
-        carousel.appendChild(createCard(data));
+  portfolioData.forEach((data, i) => {
+    carousel.appendChild(createCard(data));
 
-        const ind = document.createElement('div');
-        ind.className = 'indicator' + (i === 0 ? ' active' : '');
-        ind.onclick = () => goTo(i);
-        indicators.appendChild(ind);
-    });
+    const ind = document.createElement("div");
+    ind.className = "indicator" + (i === currentIndex ? " active" : "");
+    ind.onclick = () => goTo(i);
+    indicators.appendChild(ind);
+  });
 
-    updateCarousel();
+  updateCarousel();
 }
 
 function updateCarousel() {
-    const items = document.querySelectorAll('.carousel-item');
-    const total = items.length;
-    const mobile = window.innerWidth <= 768;
+  const items = document.querySelectorAll(".carousel-item");
+  const total = items.length;
+  const mobile = window.innerWidth <= 768;
 
-    items.forEach((item, i) => {
-        let offset = i - currentIndex;
-        if (offset > total / 2) offset -= total;
-        if (offset < -total / 2) offset += total;
+  items.forEach((item, i) => {
+    let offset = i - currentIndex;
+    if (offset > total / 2) offset -= total;
+    if (offset < -total / 2) offset += total;
 
-        const abs = Math.abs(offset);
-        const sign = offset < 0 ? -1 : 1;
+    const abs = Math.abs(offset);
+    const sign = offset < 0 ? -1 : 1;
 
-        if (abs === 0) {
-            item.style.transform = 'translate(-50%,-50%) scale(1)';
-            item.style.zIndex = 10;
-            item.style.opacity = 1;
-        } else if (abs === 1) {
-            item.style.transform =
-                `translate(-50%,-50%) translateX(${sign * (mobile ? 260 : 400)}px)
-                 translateZ(-200px) rotateY(${-sign * 30}deg) scale(.85)`;
-            item.style.opacity = .8;
-            item.style.zIndex = 5;
-        } else {
-            item.style.transform =
-                `translate(-50%,-50%) translateX(${sign * (mobile ? 420 : 600)}px)
-                 translateZ(-350px) rotateY(${-sign * 40}deg) scale(.7)`;
-            item.style.opacity = .4;
-            item.style.zIndex = 2;
-        }
-    });
+    if (abs === 0) {
+      item.style.transform = "translate(-50%,-50%) scale(1)";
+      item.style.zIndex = 10;
+      item.style.opacity = 1;
+    } else if (abs === 1) {
+      item.style.transform =
+        `translate(-50%,-50%) translateX(${sign * (mobile ? 260 : 400)}px)
+         translateZ(-200px) rotateY(${-sign * 30}deg) scale(.85)`;
+      item.style.opacity = 0.8;
+      item.style.zIndex = 5;
+    } else {
+      item.style.transform =
+        `translate(-50%,-50%) translateX(${sign * (mobile ? 420 : 600)}px)
+         translateZ(-350px) rotateY(${-sign * 40}deg) scale(.7)`;
+      item.style.opacity = 0.4;
+      item.style.zIndex = 2;
+    }
+  });
 
-    [...indicators.children].forEach((el, i) =>
-        el.classList.toggle('active', i === currentIndex)
-    );
+  [...indicators.children].forEach((el, i) =>
+    el.classList.toggle("active", i === currentIndex)
+  );
 }
 
 function next() {
-    currentIndex = (currentIndex + 1) % portfolioData.length;
-    updateCarousel();
+  currentIndex = (currentIndex + 1) % portfolioData.length;
+  updateCarousel();
 }
 
 function prev() {
-    currentIndex = (currentIndex - 1 + portfolioData.length) % portfolioData.length;
-    updateCarousel();
+  currentIndex = (currentIndex - 1 + portfolioData.length) % portfolioData.length;
+  updateCarousel();
 }
 
 function goTo(i) {
-    currentIndex = i;
-    updateCarousel();
+  currentIndex = i;
+  updateCarousel();
 }
 
-function updateClock() {
-    const now = new Date();
-    const time = now.toLocaleTimeString('pt-BR');
-    const date = now.toLocaleDateString('pt-BR');
-    document.getElementById('clock').innerText = `${date} • ${time}`;
+/* =======================
+   ATUALIZAÇÕES EM TEMPO REAL
+======================= */
+
+function updateBusStatus() {
+  document.querySelectorAll(".carousel-item").forEach(item => {
+    const id = item.dataset.id;
+    const data = portfolioData.find(p => p.id == id);
+    const status = getBusStatus(data.horarios);
+
+    item.querySelector(".anterior").innerHTML = `<b>Anterior:</b> ${status.anterior}`;
+    item.querySelector(".atual").innerHTML = `<b>Atual:</b> ${status.atual}`;
+    item.querySelector(".proximo").innerHTML = `<b>Próximo:</b> ${status.proximo}`;
+
+    const countdown = item.querySelector(".countdown");
+    countdown.dataset.time = status.chegadaSegundos;
+    countdown.innerText = formatCountdown(status.chegadaSegundos);
+  });
 }
 
 function updateCountdowns() {
-    document.querySelectorAll('.countdown').forEach(el => {
-        let sec = parseInt(el.dataset.time);
-        if (!isNaN(sec) && sec > 0) {
-            sec--;
-            el.dataset.time = sec;
-            el.innerText = formatCountdown(sec);
-        }
-    });
+  document.querySelectorAll(".countdown").forEach(el => {
+    let sec = parseInt(el.dataset.time);
+    if (!isNaN(sec) && sec > 0) {
+      sec--;
+      el.dataset.time = sec;
+      el.innerText = formatCountdown(sec);
+    }
+  });
 }
 
-document.getElementById('nextBtn').onclick = next;
-document.getElementById('prevBtn').onclick = prev;
+function updateClock() {
+  const now = new Date();
+  document.getElementById("clock").innerText =
+    `${now.toLocaleDateString("pt-BR")} • ${now.toLocaleTimeString("pt-BR")}`;
+}
+
+/* =======================
+   EVENTOS
+======================= */
+
+document.getElementById("nextBtn").onclick = next;
+document.getElementById("prevBtn").onclick = prev;
 
 setInterval(updateClock, 1000);
 setInterval(updateCountdowns, 1000);
+setInterval(updateBusStatus, 1000);
 setInterval(next, 5000);
-setInterval(initCarousel, 30000);
 
-window.addEventListener('resize', updateCarousel);
-window.addEventListener('load', () => {
-    updateClock();
-    initCarousel();
+window.addEventListener("resize", updateCarousel);
+window.addEventListener("load", () => {
+  updateClock();
+  initCarousel();
 });
-
