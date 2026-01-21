@@ -67,9 +67,9 @@ O projeto encontra-se em fase de Produto Mínimo Viável, com foco em validaçã
 👨‍💻 Criadores
 Projeto desenvolvido por:
 
-Guilherme Paicheco Ferreira
+- Guilherme Paicheco Ferreira
 
-Arthur Heringe Gonçalves
+- Arthur Heringe Gonçalves
 
 📚 Orientador: Prof. Efrem Lousada
 🏫 IFMG — Campus Ibirité
